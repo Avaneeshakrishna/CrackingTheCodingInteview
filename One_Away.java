@@ -31,26 +31,26 @@ public class One_Away {
 		// TODO Auto-generated method stub
 		
 		Scanner sc = new Scanner(System.in);						//create an object of scanner class to read input
-		String first = sc.nextLine(); 								//read first string
-		String second = sc.nextLine();								//read second string
+		String first = sc.nextLine(); 							//read first string
+		String second = sc.nextLine();							//read second string
 		
-		if(first.length()==second.length()) {                        //to hold 1. Replacement strings must be equal
-			boolean flag = oneEditReplace(first,second);             //call a function
+		if(first.length()==second.length()) {                                          	//to hold 1. Replacement strings must be equal
+			boolean flag = oneEditReplace(first,second);            		//call a function
 			if(flag)                                                       
 				System.out.println("Strings are one replace Away");
 			else                                                           
 				System.out.println("Strings are not one edit Away");
 		}
-		else if(first.length()+1==second.length()) {                  //if second string is is grater than first by 1, then we need to remove a charater from first string
-			boolean flag1 = oneEditInsert(first,second);              //call a function
+		else if(first.length()+1==second.length()) {                  			//if second string is is grater than first by 1, then we need to remove a charater from first string
+			boolean flag1 = oneEditInsert(first,second);             		//call a function
 			if(flag1) 														
 				System.out.println("Strings are one Edit Away");
 			else                                                           
 				System.out.println("Strings are not one edit Away");
 		}
-		else if(first.length()-1==second.length()) {                  //if first string is is grater than fsecond by 1, then we need to remove a charater from second string
-			boolean flag2 = oneEditInsert(second,first);              //we now that removal is a INVERSE of insertion, I done insertion method but while calling the function
-			if(flag2)											      // I swapped the two strings.
+		else if(first.length()-1==second.length()) {                  			//if first string is is grater than fsecond by 1, then we need to remove a charater from second string
+			boolean flag2 = oneEditInsert(second,first);              		//we now that removal is a INVERSE of insertion, I done insertion method but while calling the function
+			if(flag2)								// I swapped the two strings.
 				System.out.println("Strings are one Insert Away");
 			else 
 				System.out.println("Strings are not one edit Away");
@@ -62,10 +62,10 @@ public class One_Away {
 	}
 	static boolean oneEditReplace(String s1, String s2) {
 		boolean foundDifference = false;
-		for(int i=0;i<s1.length();i++) {                             //loop through the string and compare every characetr, 
-		if(s1.charAt(i)!=s2.charAt(i)) {                             // if characters are same make foundDifference as true and compare next character, 
-				if(foundDifference) {                                //if your string has more than one character difference then it should return false. 
-					return false;							         //This line handles that case
+		for(int i=0;i<s1.length();i++) {                             			//loop through the string and compare every characetr, 
+		if(s1.charAt(i)!=s2.charAt(i)) {                             			// if characters are same make foundDifference as true and compare next character, 
+				if(foundDifference) {                                		//if your string has more than one character difference then it should return false. 
+					return false;						//This line handles that case
 				}
 				foundDifference=true;
 			}
@@ -74,12 +74,12 @@ public class One_Away {
 	}
 	
 	static boolean oneEditInsert(String s1, String s2) {
-		int index1=0, index2=0;                                      //initialize two indexes with zero: index2 -> s2 and index1 -> s1
-		while(index2<s2.length() && index1<s1.length()) {            //loop until these pointers are greater than string lengths
-			if(s1.charAt(index1)!=s2.charAt(index2)) {               //Our aim is to check that one non-equal character:compare each character of the 
-				if(index1!=index2) {                                 //strings with the pointer, if both chars are same just increment the pointers. If not check the pointers, if
-					return false;                                    // they are equal just increment the second pointer
-				}												    //if not it means that strings are not one edit away so return false.
+		int index1=0, index2=0;                                      			//initialize two indexes with zero: index2 -> s2 and index1 -> s1
+		while(index2<s2.length() && index1<s1.length()) {            			//loop until these pointers are greater than string lengths
+			if(s1.charAt(index1)!=s2.charAt(index2)) {               		//Our aim is to check that one non-equal character:compare each character of the 
+				if(index1!=index2) {                                		//strings with the pointer, if both chars are same just increment the pointers. If not check the pointers, if
+					return false;                                   	// they are equal just increment the second pointer
+				}								//if not it means that strings are not one edit away so return false.
 				index2++;
 			}
 			else {
