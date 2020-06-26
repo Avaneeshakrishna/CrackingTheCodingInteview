@@ -34,7 +34,7 @@ public class One_Away {
 		String first = sc.nextLine(); 							//read first string
 		String second = sc.nextLine();							//read second string
 		
-		if(first.length()==second.length()) {                                          	//to hold 1. Replacement strings must be equal
+		if(first.length()==second.length()) {                                          	//Strings must be equal to perform replacement technique
 			boolean flag = oneEditReplace(first,second);            		//call a function
 			if(flag)                                                       
 				System.out.println("Strings are one replace Away");
