@@ -1,7 +1,7 @@
 /*
 PROBLEM STATEMENT: String Compression
               
-              " Implement a method to perform basic string compression using counts of repeated characters. For example, the string 'aabcccccaaa" would become a2b1c5a3.
+              " Implement a method to perform basic string compression using counts of repeated characters. For example, the string 'aabbccc" would become a2b2c3.
               If the "compressed" string would not become smaller than the original string, your method should return the original string. You can assume the string 
               has only uppercase and lowercase letters."
               
@@ -15,8 +15,6 @@ EXAMPLE:      1. aabcccccaaa    -->     a2b1c5a3    - correct example
               4. aab            -->     aab         - the compressed string length is less than the original string, so return original string
 
 
-
-
 */
 
 
@@ -25,45 +23,31 @@ public class string_compression {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);                                     		// creating object of the scanner to read inputs
-		System.out.println("Enter one string");
-		String str = sc.nextLine();                                              		// reading input
 		
-		String res = compress(str);                                              		// calling compress method with one parameter i.e our input
-		System.out.println("The resultedd string is = "+ res);
+		Scanner sc = new Scanner(System.in);              				// creating scanner object to read the input
+		String str;
+		System.out.println("Enter the input string");
+		str = sc.nextLine();								// reading the string input
+		
+		String result = compress(str);  						// calling a function named compress. Parameter passed is the string input
+		
+		System.out.println("The compressed string is " +result);			// Displaying the result
 		
 	}
-	 public static String compress(String s) {                                   			// compress method definition here
-		int finalLength = countCompression(s);                                   		// call a function countCompress with our input as the parameter. finalLength holds the exact length of the compressed (resultant) string should hold
-		if(finalLength >= s.length())                                            		// as said in the problem if finalLength > input string's length we should return the original string
-			return s;
-		
-		StringBuilder compressed = new StringBuilder(finalLength);               		// creating string builder
-		int countConsecutive = 0;                                               		// this is used to count the occurence of the character
-		for (int i = 0; i < s.length(); i++) {                                   		// loop through the string
-			countConsecutive++;                                                  		// increment counter for the current character
+	public static String compress (String str) {						// function definition
+		StringBuilder compressed = new StringBuilder();					// creating the StringBuilder object to hold the result
+		int countConsecutive = 0;							// this is used to count the occurrence of the characters
+		for (int i = 0; i < str.length(); i++) {					// loop through the string and count the occurrence of each characters
+			countConsecutive++;
 			
-			if(i+1 >= s.length() || s.charAt(i) != s.charAt(i + 1)) {            		// 2 if conditions with OR opertor. one checks if you are at last but one character and the other compares if the current and next characters are different
-				compressed.append(s.charAt(i));                                  	// if so, append the current character to the string builder compress
-				compressed.append(countConsecutive);                             	// also append its total number of occurence
-				countConsecutive = 0;                                            	// make countConsecutive to zero, because we need to count the next character
+			if(i + 1 >=str.length() || str.charAt(i) != str.charAt(i + 1)) {	// if next character is different than current, append this char to the result
+				compressed.append(str.charAt(i));				// appending the current character
+				compressed.append(countConsecutive);				// appending its count
+				countConsecutive = 0;						// this is made zero because we need to go for next character in the string
 			}
-			
 		}
-		return compressed.toString();                                           	 	// return the result by converting it to string
+		return compressed.length() < str.length() ? compressed.toString() : str;	// according to the problem, we need to chec the length of the compressed string. If that is less than the input string 
+												// return compressed string. Otherwise return the original string
 	}
-	 public static int countCompression(String str) {                            			// countCompress method definition here
-		 int compressedLength = 0;                                               		// compressedLength holds the exact length of the compressed (resultant) string should hold
-		 int countConsecutive = 0;                                               		// this is used to count the occurence of the character
-		 for (int i = 0; i < str.length(); i++) {                               		// loop through the string to count the occurence of the character
-			 countConsecutive++;                                                       	// increment counter for the current character
-			 
-			 if(i+1 >= str.length() || str.charAt(i) != str.charAt(i + 1)) {            	//  2 if conditions with OR opertor. one checks if you are at last but one character and the other compares if the current and next characters are different
-				 compressedLength += 1 + String.valueOf(countConsecutive).length();     // update the compressedLength, here valueOf is used to convert int to string and its length is returned here                                  
-				 countConsecutive = 0;                                                  // make countConsecutive to zero, because we need to count the next character
-			 }
-		 }
-		 return compressedLength;                                                     		// return length of the compressed (resultant) string
-	 }
 
 }
