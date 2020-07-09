@@ -8,7 +8,7 @@ PROBLEM STATEMENT: String Compression
 
 EXAMPLE:      1. aabcccccaaa    -->     a2b1c5a3    - correct example
 
-              2. aaaAAbbbbbb    -->     a2A2b5      - corret example
+              2. aaaAAbbbbbb    -->     a3A2b5      - corret example
               
               3. aabb           -->     aabb        - the compressed string length is equal to the original string, so return original string
 
